@@ -57,8 +57,8 @@ class UserController extends Controller
 
         $data = new User([
             'name' => $request->get('name'),
-            'name' => $request->get('email'),
-            'name' => $request->get('password')
+            'email' => $request->get('email'),
+            'password' => $request->get('password')
         ]);
         $data->save();
 

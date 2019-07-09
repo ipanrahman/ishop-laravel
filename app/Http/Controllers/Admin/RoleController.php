@@ -29,8 +29,8 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = Role::all();
-        return view('admin.roles.index',compact('roles'))
+        $data = Role::all();
+        return view('admin.roles.index',compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -59,7 +59,7 @@ class RoleController extends Controller
 
         $data = new Role([
             'name' => $request->get('name'),
-            'name' => $request->get('description')
+            'description' => $request->get('description')
         ]);
         $data->save();
 
