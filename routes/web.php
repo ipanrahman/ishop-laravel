@@ -9,18 +9,19 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', 'PublicController@index');
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/images/{filename}');
 
 Route::name('admin.')->group(function () {
     Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', 'Admin\DashboardController');
         Route::resource('products', 'Admin\ProductController');
         Route::resource('orders', 'Admin\OrderController');
     });
