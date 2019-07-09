@@ -73,5 +73,5 @@ Route::get('/latihan', function () {
     Route::get('user/edit/{id}', ['as' => 'user.edit', 'uses' => 'Admin\UserController@edit']);
     Route::put('user/update/{id}', ['as' => 'user.update', 'uses' => 'Admin\UserController@update']);
     Route::get('user/delete/{id}', ['as' => 'user.delete', 'uses' => 'Admin\UserController@destroy']);
-    Route::resource('user','Backend\UserController');
+    Route::resource('user','Admin\UserController');
 

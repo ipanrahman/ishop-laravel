@@ -14,6 +14,7 @@
     </div>
 </div>
 </div>
+@push('scripts')
 <script type="text/javascript">
     $(function() {
         $('#table-datatables').DataTable({
@@ -30,3 +31,4 @@
         });
     });
 </script>
+@endpush

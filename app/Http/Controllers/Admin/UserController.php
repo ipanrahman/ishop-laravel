@@ -27,7 +27,7 @@ class UserController extends Controller
     public function index()
     {
         $data = User::all();
-        return view('admin.users.index',compact('users'))
+        return view('admin.users.index',compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
