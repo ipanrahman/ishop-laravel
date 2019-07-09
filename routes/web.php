@@ -31,6 +31,15 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::delete('/products/{id}', ['as' => 'products.destroy', 'uses' => 'ProductController@destroy']);
     Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 
+    # CategoryController
+    Route::get('/categories', ['as' => 'categories.index', 'uses' => 'CategoryController@index']);
+    Route::get('/categories/create', ['as' => 'categories.create', 'uses' => 'CategoryController@create']);
+    Route::post('/categories', ['as' => 'categories.store', 'uses' => 'CategoryController@store']);
+    Route::get('/categories/{id}/edit', ['as' => 'categories.edit', 'uses' => 'CategoryController@edit']);
+    Route::get('/categories/{id}', ['as' => 'categories.update', 'uses' => 'CategoryController@update']);
+    Route::delete('/categories/{id}', ['as' => 'categories.destroy', 'uses' => 'CategoryController@destroy']);
+    Route::get('/categories/{id}', ['as' => 'categories.show', 'uses' => 'CategoryController@show']);
+
     # OrderController
     Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
     Route::get('/orders/create', ['as' => 'orders.create', 'uses' => 'OrderController@create']);

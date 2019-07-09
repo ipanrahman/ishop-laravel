@@ -37,10 +37,7 @@
                 <a href="{{ route('admin.products.index') }}">Product</a>
             </li>
             <li>
-                <a href="{{ route('admin.orders.index') }}">Order</a>
-            </li>
-            <li>
-                <a href="#">Cart</a>
+                <a href="{{ route('admin.categories.index') }}">Category</a>
             </li>
         </ul>
 
