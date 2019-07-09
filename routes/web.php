@@ -25,6 +25,11 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     # ProductController
     Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
     Route::get('/products/create', ['as' => 'products.create', 'uses' => 'ProductController@create']);
+    Route::post('/products', ['as' => 'products.store', 'uses' => 'ProductController@store']);
+    Route::get('/products/{id}/edit', ['as' => 'products.edit', 'uses' => 'ProductController@edit']);
+    Route::get('/products/{id}', ['as' => 'products.update', 'uses' => 'ProductController@update']);
+    Route::delete('/products/{id}', ['as' => 'products.destroy', 'uses' => 'ProductController@destroy']);
+    Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 
     # OrderController
     Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
