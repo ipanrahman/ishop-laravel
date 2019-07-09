@@ -14,21 +14,17 @@ class RolesTableDataSeeder extends Seeder
     {
         DB::table('roles')->truncate();
 
-        $data = [
-            [
-                'name' => 'super_admin',
-                'description' => 'Can Edit Everythings'
-            ],
+        $roles = [
             [
                 'name' => 'admin',
-                'description' => 'Can Edit thing'
+                'description' => 'Can Edit Everything'
+            ],
+            [
+                'name' => 'user',
+                'description' => 'Can access web'
             ],
 
         ];
-
-        foreach ( $data as  $datas )
-        {
-            Role::create($datas);
-        }
+        DB::table('roles')->insert($roles);
     }
 }
