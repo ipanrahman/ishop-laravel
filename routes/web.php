@@ -11,7 +11,7 @@
 |
  */
 
-Route::get('/', 'PublicController@index');
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
