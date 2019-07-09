@@ -20,6 +20,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('pages/admin/style.css') }}">
+    @include('layouts.styles')
 
 </head>
 
@@ -106,6 +107,7 @@
         });
     });
     </script>
+    @include('layouts.script')
     @stack('scripts')
 </body>
 
