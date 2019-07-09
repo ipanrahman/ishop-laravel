@@ -19,17 +19,17 @@ class Role extends Model
     {
         return $this
             ->select(
-                $this->table.'.id',
-                $this->table.'.name',
-                $this->table.'.description'
+                $this->table . '.id',
+                $this->table . '.name',
+                $this->table . '.description'
             )->orderBy(
-                $this->table.'.name'
-            );
+            $this->table . '.name'
+        );
     }
 
-    public function user_role()
+    public function users()
     {
-        return $this->hasMany(UserRole::class);
+        return $this->belongsToMany(User::class, 'user_role');
     }
 
     public function menuRole()
