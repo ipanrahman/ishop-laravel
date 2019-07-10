@@ -20,6 +20,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('pages/admin/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/css/sweetalert2.css') }}">
 </head>
 
 <body>
@@ -27,7 +28,9 @@
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>{{ config('app.name') }}</h3>
+            <a href="/admin">
+                <h3>{{ config('app.name') }}</h3>
+            </a>
         </div>
 
         <ul class="list-unstyled components">
@@ -89,6 +92,7 @@
     </div>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('plugins/sweetalert2/js/sweetalert2.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

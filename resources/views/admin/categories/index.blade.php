@@ -9,7 +9,7 @@
                         <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Add</a>
                     </div>
                     <div>
-                        <table class="table table-striped">
+                        <table class="table table-bordered">
                             <thead class="thead-light">
                             <tr>
                                 <th>No</th>
@@ -33,7 +33,7 @@
                                                href="{{ route('admin.categories.show',$category->id) }}">
                                                 <i class="far fa-eye"></i> Detail
                                             </a>
-                                            <a class="btn btn-danger btn-sm text-white" id="btnDeleteProduct"
+                                            <a class="btn btn-danger btn-sm text-white" id="btnDeleteCategory"
                                                data-id="{{ $category->id }}">
                                                 <i class="fas fa-trash"></i> Delete
                                             </a>
@@ -61,18 +61,25 @@
                             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                         }
                     });
-                    let token = $("meta[name='csrf-token']").attr("content");
-                    let id = $(this).data('id');
-                    let url = '/admin/categories/' + id;
+                    const token = $("meta[name='csrf-token']").attr("content");
+                    const id = $(this).data('id');
                     $.ajax({
-                        url: url,
+                        url: `/admin/categories/${id}`,
                         type: 'DELETE',
                         data: {
                             'id': id,
                             '_token': token
                         },
                         success: function (res) {
-                            window.location.reload();
+                            Swal.fire({
+                                title: 'Info!',
+                                text: res.success,
+                                type: 'info',
+                                showConfirmButton: false,
+                            });
+                            setTimeout(function () {
+                                window.location = '{{ route('admin.categories.index') }}';
+                            }, 1000);
                         }
                     });
                 }
