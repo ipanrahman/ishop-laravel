@@ -12,7 +12,7 @@
  */
 
 Route::get('/', 'HomeController@index');
-
+Route::get('/frontend', 'FrontendController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
