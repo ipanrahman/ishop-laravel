@@ -30,7 +30,9 @@
                                     <div class="img-small-wrap">
                                         @foreach($product->images()->get() as $image)
                                             <div class="item-gallery">
-                                                <img src="{{ asset('/images/'. $image->image_src) }}">
+                                                <a href="{{ asset('/images/'. $image->image_src) }}" data-fancybox="">
+                                                    <img src="{{ asset('/images/'. $image->image_src) }}">
+                                                </a>
                                             </div>
                                         @endforeach
                                     </div> <!-- slider-nav.// -->
