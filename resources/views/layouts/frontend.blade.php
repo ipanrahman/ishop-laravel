@@ -57,7 +57,7 @@
                 <div class="col-lg-9-24 col-sm-12">
                     <div class="widgets-wrap float-right row no-gutters py-1">
                         <div class="col-auto">
-                            <a href="#" class="widget-header">
+                            <a href="{{ route('carts.index') }}" class="widget-header">
                                 <div class="icontext">
                                     <div class="icon-wrap"><i class="text-warning icon-sm  fa fa-heart"></i></div>
                                     <div class="text-wrap text-dark">
