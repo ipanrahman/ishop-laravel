@@ -16,6 +16,8 @@
     <link href="{{ asset('css/frontend-style.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/frontend-responsive.css') }}" rel="stylesheet"
           media="only screen and (max-width: 1200px)"/>
+
+    <link href="{{ asset('plugins/fancybox/fancybox.min.css') }}" type="text/css" rel="stylesheet">
 </head>
 <body>
 <header class="section-header">
@@ -83,206 +85,7 @@
         </div>
     </section>
 </header>
-<section class="section-main bg padding-y-sm">
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <div class="row row-sm">
-                    <aside class="col-md-3">
-                        <h5 class="text-uppercase">My Markets</h5>
-                        <ul class="menu-category">
-                            @foreach($categories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
-                                @break($loop->index==5)
-                            @endforeach
-                            <li class="has-submenu"><a href="#">More category <i
-                                        class="icon-arrow-right pull-right"></i></a>
-                                <ul class="submenu">
-                                    @foreach($categories as $category)
-                                        @if($loop->index>5)
-                                            <li><a href="#">{{ $category->name }}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </li>
-                        </ul>
-                    </aside>
-                    <div class="col-md-9">
-
-                        <div class="owl-init slider-main owl-carousel" data-items="1" data-nav="true" data-dots="false">
-                            <div class="item-slide">
-                                <img src="images/banners/slide1.jpg">
-                            </div>
-                            <div class="item-slide">
-                                <img src="images/banners/slide2.jpg">
-                            </div>
-                            <div class="item-slide">
-                                <img src="images/banners/slide3.jpg">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-<section class="section-request bg padding-y-sm">
-    <div class="container">
-        <header class="section-heading heading-line">
-            <h4 class="title-section bg text-uppercase">Recommended items</h4>
-        </header>
-
-        <div class="row-sm">
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/3.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">Good item name</a></h6>
-
-                        <div class="price-wrap">
-                            <span class="price-new">$1280</span>
-                            <del class="price-old">$1980</del>
-                        </div>
-
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/4.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">The name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/5.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">Name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/6.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">The name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/3.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">Good item name</a></h6>
-
-                        <div class="price-wrap">
-                            <span class="price-new">$1280</span>
-                            <del class="price-old">$1980</del>
-                        </div>
-
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/4.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">The name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div> <!-- price-wrap.// -->
-                    </figcaption>
-                </figure> <!-- card // -->
-            </div> <!-- col // -->
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/5.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">Name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div> <!-- price-wrap.// -->
-                    </figcaption>
-                </figure> <!-- card // -->
-            </div> <!-- col // -->
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/6.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">The name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div> <!-- price-wrap.// -->
-                    </figcaption>
-                </figure> <!-- card // -->
-            </div> <!-- col // -->
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/3.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">Good item name</a></h6>
-
-                        <div class="price-wrap">
-                            <span class="price-new">$1280</span>
-                            <del class="price-old">$1980</del>
-                        </div> <!-- price-wrap.// -->
-
-                    </figcaption>
-                </figure> <!-- card // -->
-            </div> <!-- col // -->
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/4.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">The name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div> <!-- price-wrap.// -->
-                    </figcaption>
-                </figure> <!-- card // -->
-            </div> <!-- col // -->
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/5.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">Name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div> <!-- price-wrap.// -->
-                    </figcaption>
-                </figure> <!-- card // -->
-            </div> <!-- col // -->
-            <div class="col-md-2">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="images/items/6.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h6 class="title "><a href="#">The name of product</a></h6>
-                        <div class="price-wrap">
-                            <span class="price-new">$280</span>
-                        </div> <!-- price-wrap.// -->
-                    </figcaption>
-                </figure> <!-- card // -->
-            </div> <!-- col // -->
-        </div> <!-- row.// -->
-
-
-    </div><!-- container // -->
-</section>
-<!-- ========================= SECTION ITEMS .END// ========================= -->
-
-<!-- ========================= SECTION SUBSCRIBE ========================= -->
+@yield('content')
 <section class="section-subscribe bg-secondary padding-y-lg">
     <div class="container">
 
@@ -324,6 +127,6 @@
 <link href="{{ asset('plugins/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 <link href="{{ asset('plugins/owlcarousel/assets/owl.theme.default.css') }}" rel="stylesheet">
 <script src={{ asset('plugins/owlcarousel/owl.carousel.min.js') }}></script>
-
+<script src="{{ asset('plugins/fancybox/fancybox.min.js') }}" type="text/javascript"></script>
 <script src={{ asset('js/frontend.js') }}></script>
 </html>

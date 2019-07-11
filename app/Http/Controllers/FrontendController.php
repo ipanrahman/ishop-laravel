@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 
 class FrontendController extends Controller
@@ -11,6 +12,7 @@ class FrontendController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('web', compact('categories', $categories));
+        $products = Product::all();
+        return view('web', compact('categories', $categories), compact('products',$products));
     }
 }

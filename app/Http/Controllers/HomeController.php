@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(Request $request)
+    public function indexAction(Request $request)
     {
         $product = Product::paginate(24);
         $category = Category::all();
@@ -45,5 +45,12 @@ class HomeController extends Controller
         } else {
             return view('home', compact('category', 'product'));
         }
+    }
+
+    public function index()
+    {
+        $categories = Category::all();
+        $products = Product::all();
+        return view('home', compact('categories', $categories), compact('products', $products));
     }
 }
