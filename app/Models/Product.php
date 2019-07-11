@@ -24,7 +24,13 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Models\Category', 'product_categories');
     }
-    public function review(){
-        return $this->belongsToMany('App\Models\Review','product_reviews');
+
+    public function review()
+    {
+        return $this->belongsToMany('App\Models\Review', 'product_reviews');
+    }
+
+    public function cart(){
+        return $this->belongsTo(Cart::class);
     }
 }

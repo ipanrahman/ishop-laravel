@@ -61,7 +61,7 @@
                                 <div class="icontext">
                                     <div class="icon-wrap"><i class="text-warning icon-sm  fa fa-heart"></i></div>
                                     <div class="text-wrap text-dark">
-                                        <span class="small round badge badge-secondary">0</span>
+                                        <span class="small round badge badge-secondary" id="cartValue">0</span>
                                         <div>Cart</div>
                                     </div>
                                 </div>
@@ -129,4 +129,16 @@
 <script src={{ asset('plugins/owlcarousel/owl.carousel.min.js') }}></script>
 <script src="{{ asset('plugins/fancybox/fancybox.min.js') }}" type="text/javascript"></script>
 <script src={{ asset('js/frontend.js') }}></script>
+<script src={{ asset('js/jquery.ajax-setup.js') }}></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: 'GET',
+            url: '/carts/count',
+            success: function (res) {
+                $('#cartValue').text(res.cartCount);
+            }
+        });
+    });
+</script>
 </html>

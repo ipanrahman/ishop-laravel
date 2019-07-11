@@ -19,7 +19,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/images/{filename}');
 
+# ProductController
 Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+
+# CartController
+Route::post('/carts', ['as' => 'carts.store', 'uses' => 'CartController@store']);
+Route::get('/carts/count', ['as' => 'carts.count', 'uses' => 'CartController@count']);
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', 'DashboardController');

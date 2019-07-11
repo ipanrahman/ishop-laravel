@@ -66,8 +66,13 @@
                                 <div class="price-wrap">
                                     <span class="price-new">Rp{{ $product->price }}</span>
                                 </div>
-                                <a href="{{ route('carts.add',$product->id) }}" class="btn btn-outline-primary">
-                                    <i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                <form method="post" action="{{ route('carts.store') }}">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <button type="submit" class="btn btn-outline-primary">
+                                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                </form>
                             </figcaption>
                         </figure>
                     </div>

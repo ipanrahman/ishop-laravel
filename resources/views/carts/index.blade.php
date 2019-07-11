@@ -1,68 +1,66 @@
-@extends('layouts.app')
-
+@extends('layouts.frontend')
 @section('content')
-<div class="container">
-	<br>
-	@if($message = Session::get('success'))
-	<div class="alert alert-success">
-		<p>{{ $message }}</p>
-	</div>
-	@endif
-	<table id="cart" class="table table-hover table-condensed">
-		<thead class="thead-light">
-			<tr>
-				<th style="width:50%">Product</th>
-				<th style="width:10%">Price</th>
-				<th style="width:8%">Quantity</th>
-				<th style="width:22%" class="text-center">Subtotal</th>
-				<th style="width:10%"></th>
-			</tr>
-		</thead>
-		<tbody>
-			
-			<?php $total = 0 ?>
+    <section class="section-content bg padding-y border-top">
+        <div class="container">
 
-			@if(session('cart'))
-			@foreach(session('cart') as $id => $product)
+            <div class="row">
+                <main class="col-sm-12">
 
-			<?php $total += $product['price'] * $product['quantity'] ?>
-
-			<tr>
-				<td data-th="Product">
-					<div class="row">
-						<div class="col-sm-3 hidden-xs">
-					      <img src="{{ asset('/images/'. $product['image_url']) }}" style="width:100px;height:100px;">
-						</div>
-						<div class="col-sm-9">
-							<h4 class="nomargin">{{ $product['name'] }}</h4>
-						</div>
-					</div>
-				</td>
-				<td data-th="Price">Rp. {{ $product['price'] }}</td>
-				<td data-th="Quantity">
-					<input type="number" value="{{ $product['quantity'] }}" class="form-control quantity" min="1" max="{{$product['stock']}}">
-				</td>
-				<td data-th="Subtotal" class="text-center">Rp. {{ $product['price'] * $product['quantity'] }}</td>
-				<td class="actions" data-th="">
-					<button class="btn btn-primary btn-sm update-cart" data-id="{{ $id }}"><i class="fas fa-sync"></i> Update</button>
-					<button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="fas fa-trash-alt"></i> Remove</button>
-				</td>
-			</tr>
-			@endforeach
-			@endif
-		</tbody>
-		<tfoot>
-			<tr>
-				<td>
-					<a href="{{ url('public') }}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Lanjutkan Belanja</a>
-					
-				</td>
-				<td colspan="2" class="text-left h4"><b>TOTAL</b></td>
-				<td colspan="" class="text-center h4"><b>Rp. {{ $total }}</b></td>
-				<td colspan="" class="text-center h4"><a href="{{ route('admin.orders.create') }}" class="btn btn-success"><i class="fas fa-money-bill-wave"></i> Lanjutkan ke Pembayaran</a></td>				
-			</tr>
-			
-		</tfoot>
-	</table>
-</div>
+                    <div class="card">
+                        <table class="table table-hover shopping-cart-wrap">
+                            <thead class="text-muted">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col" width="120">Quantity</th>
+                                <th scope="col" width="120">Price</th>
+                                <th scope="col" class="text-right" width="200">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($cart->products as $product)
+                                <tr>
+                                    <td>
+                                        <figure class="media">
+                                            <div class="img-wrap">
+                                                <img
+                                                    src="{{ asset('/images/'. $product->images()->first()->image_src) }}"
+                                                    class="img-thumbnail img-sm"></div>
+                                            <figcaption class="media-body">
+                                                <h6 class="title text-truncate">{{ $product->name }}</h6>
+                                                <dl class="dlist-inline small">
+                                                    <dt>Size:</dt>
+                                                    <dd>XXL</dd>
+                                                </dl>
+                                                <dl class="dlist-inline small">
+                                                    <dt>Color:</dt>
+                                                    <dd>Orange color</dd>
+                                                </dl>
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="price-wrap">
+                                            <var class="price">Rp{{ $product->price }}</var>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="" class="btn btn-outline-danger btn-round"> × Remove</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
 @endsection
