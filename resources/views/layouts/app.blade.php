@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    @include('layouts.styles')
-    @include('layouts.script')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,7 +9,15 @@
 
     <title>{{ config('app.name') }}</title>
     <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
 
 </head>
 <body style="background-color:#e0e0e0">
@@ -31,44 +37,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    @if (Auth::check())
-                        <li class="nav-item dropdown" style="margin-right:10px">
-                            <a class="nav-link dropdown-toggle    " href="#" id="navbarDropdown"
-                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class=""></i> Product
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.products.index')
-                                }}">List</a>
-
-                                <a class="dropdown-item" href="{{ route('admin.products.create')
-                                }}"> Tambah</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown" style="margin-right:10px">
-                            <a class="nav-link dropdown-toggle   " href="#" id="navbarDropdown"
-                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class=""></i> Order
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.orders.index')
-                                }}"><i class=""></i> List</a>
-
-                                <a class="dropdown-item" href="{{ route('admin.orders.create')
-                                }}"><i class=""></i> Tambah</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
-                                Cart <span class="badge badge-pill badge-danger">
-                            @if(session('cart'))
-                                        {{ count(session('cart')) }}
-                                    @else
-                                        0
-                                    @endif
-                            </span></a>
-                        </li>
-                    @endif
                 </ul>
                 <div class="clearfix"></div>
                 <!-- Right Side Of Navbar -->
@@ -116,15 +84,8 @@
         @yield('content')
     </main>
 </div>
-<script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+<script src="{{ asset('plugins/sweetalert2/js/sweetalert2.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

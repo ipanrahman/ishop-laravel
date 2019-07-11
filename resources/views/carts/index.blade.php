@@ -16,16 +16,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($cart->products as $product)
+                            @foreach($carts as $cart)
                                 <tr>
                                     <td>
                                         <figure class="media">
                                             <div class="img-wrap">
                                                 <img
-                                                    src="{{ asset('/images/'. $product->images()->first()->image_src) }}"
-                                                    class="img-thumbnail img-sm"></div>
+                                                    src="{{ asset('/images/'. $cart->product_image_url) }}"
+                                                    class="img-thumbnail img-sm">
+                                            </div>
                                             <figcaption class="media-body">
-                                                <h6 class="title text-truncate">{{ $product->name }}</h6>
+                                                <h6 class="title text-truncate">{{ $cart->products_name }}</h6>
                                                 <dl class="dlist-inline small">
                                                     <dt>Size:</dt>
                                                     <dd>XXL</dd>
@@ -38,25 +39,22 @@
                                         </figure>
                                     </td>
                                     <td>
-                                        <select class="form-control">
-                                            @for($i=1;$i<=$product->stock;$i++)
-                                                <option name="quantity" id="quantity"
-                                                @if($cart->quantity ==$i) {{ "selected" }}
-                                                    @endif>{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                        <input type="text" name="quantity" value="{{ $cart->quantity }}" id="quantity"
+                                               class="form-control">
                                     </td>
                                     <td>
                                         <div class="price-wrap">
-                                            <var class="price">Rp{{ $product->price }}</var>
+                                            <var class="price">Rp{{ $cart->product_price }}</var>
                                         </div>
                                     </td>
                                     <td class="text-right">
                                         <button class="btn btn-outline-warning btn-round"
-                                                id="btnUpdateCart" data-id="{{ $cart->id }}">Update
+                                                id="btnUpdateCart" data-id="{{ $cart->id }}"
+                                                onclick="updateCart('{{ $cart->id }}')">Update
                                         </button>
                                         <button href="" class="btn btn-outline-danger btn-round"
-                                                id="btnRemoveCart" data-id="{{ $cart->id }}">Remove
+                                                id="btnRemoveCart" data-id="{{ $cart->id }}"
+                                                onclick="removeCart('{{ $cart->id }}')">Remove
                                         </button>
                                     </td>
                                 </tr>
@@ -75,7 +73,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Total Harga <b>Rp{{ $cart->quantity *$cart->products->sum('price') }}</b></td>
+                                <td>Total Harga <b>Rp{{ $carts->sum('total')}}</b></td>
                             </tr>
                             <tr>
                                 <td>
@@ -92,55 +90,53 @@
 @endsection
 @push('scripts')
     <script>
-        $(function () {
-            $('#btnUpdateCart').click(function (evt) {
-                evt.preventDefault();
-                const id = $(this).data('id');
-                $.ajax({
-                    url: '/carts/' + id,
-                    method: 'PUT',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: id,
-                        quantity: $('#quantity').val()
-                    },
-                    success: function (res) {
-                        Swal.fire({
-                            title: 'Info!',
-                            text: res.success,
-                            type: 'info',
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function () {
-                            window.location = '{{ route('carts.index') }}';
-                        }, 1000);
-                    }
-                });
+        function updateCart(id) {
+            $.ajax({
+                url: '/carts/' + id,
+                method: 'PUT',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    quantity: $('#quantity').val()
+                },
+                success: function (res) {
+                    Swal.fire({
+                        title: 'Info!',
+                        text: res.success,
+                        type: 'info',
+                        showConfirmButton: false,
+                    });
+                    setTimeout(function () {
+                        window.location = '{{ route('carts.index') }}';
+                    }, 1000);
+                },
+                error: function (res) {
+                    console.log(res);
+                }
             });
-            $('#btnRemoveCart').click(function (evt) {
-                evt.preventDefault();
-                const id = $(this).data('id');
-                $.ajax({
-                    url: '/carts/' + id,
-                    method: 'DELETE',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: id,
-                        quantity: $('#quantity').val()
-                    },
-                    success: function (res) {
-                        Swal.fire({
-                            title: 'Info!',
-                            text: res.success,
-                            type: 'info',
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function () {
-                            window.location = '{{ route('carts.index') }}';
-                        }, 1000);
-                    }
-                });
+        }
+
+        function removeCart(id) {
+            $.ajax({
+                url: '/carts/' + id,
+                method: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    quantity: $('#quantity').val()
+                },
+                success: function (res) {
+                    Swal.fire({
+                        title: 'Info!',
+                        text: res.success,
+                        type: 'info',
+                        showConfirmButton: false,
+                    });
+                    setTimeout(function () {
+                        window.location = '{{ route('carts.index') }}';
+                    }, 1000);
+                }
             });
-        });
+        }
     </script>
 @endpush

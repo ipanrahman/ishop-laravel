@@ -31,7 +31,9 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() == 'production') {
             URL::forceScheme('https');
         }
-        $categories = Category::all();
-        View::share('categories', $categories);
+        if (Schema::hasTable('categories')) {
+            $categories = Category::all();
+            View::share('categories', $categories);
+        }
     }
 }

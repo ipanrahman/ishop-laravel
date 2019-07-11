@@ -12,9 +12,12 @@ class Product extends Model
         'price',
         'description',
     ];
-    public function user(){
-        return  $this->belongsTo('App\User');
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
+
     public function images()
     {
         return $this->belongsToMany('App\Models\Image', 'product_images');
@@ -28,9 +31,5 @@ class Product extends Model
     public function review()
     {
         return $this->belongsToMany('App\Models\Review', 'product_reviews');
-    }
-
-    public function cart(){
-        return $this->belongsTo(Cart::class);
     }
 }
