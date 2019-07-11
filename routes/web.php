@@ -23,8 +23,11 @@ Route::get('/images/{filename}');
 Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 
 # CartController
+Route::get('/carts', ['as' => 'carts.index', 'uses' => 'CartController@index']);
 Route::post('/carts', ['as' => 'carts.store', 'uses' => 'CartController@store']);
 Route::get('/carts/count', ['as' => 'carts.count', 'uses' => 'CartController@count']);
+Route::put('/carts/{id}', ['as' => 'carts.update', 'uses' => 'CartController@update']);
+Route::delete('/carts/{id}', ['as' => 'carts.delete', 'uses' => 'CartController@destroy']);
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', 'DashboardController');
@@ -89,8 +92,3 @@ Route::get('show/{id}', 'PublicController@show');
 Route::get('public/image/{imageName}', 'PublicController@image');
 
 Route::post('review', 'PublicController@store')->name('review.store');
-
-Route::get('carts', 'CartController@index')->name('carts.index');
-Route::get('carts/add/{id}', 'CartController@add')->name('carts.add');
-Route::patch('carts/update', 'CartController@update')->name('carts.update');
-Route::delete('carts/remove', 'CartController@remove')->name('carts.remove');

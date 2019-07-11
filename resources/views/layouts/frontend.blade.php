@@ -18,6 +18,7 @@
           media="only screen and (max-width: 1200px)"/>
 
     <link href="{{ asset('plugins/fancybox/fancybox.min.css') }}" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/css/sweetalert2.css') }}">
 </head>
 <body>
 <header class="section-header">
@@ -128,8 +129,10 @@
 <link href="{{ asset('plugins/owlcarousel/assets/owl.theme.default.css') }}" rel="stylesheet">
 <script src={{ asset('plugins/owlcarousel/owl.carousel.min.js') }}></script>
 <script src="{{ asset('plugins/fancybox/fancybox.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('plugins/sweetalert2/js/sweetalert2.js') }}"></script>
 <script src={{ asset('js/frontend.js') }}></script>
 <script src={{ asset('js/jquery.ajax-setup.js') }}></script>
+@stack('scripts')
 <script>
     $(function () {
         $.ajax({

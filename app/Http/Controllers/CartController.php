@@ -17,7 +17,11 @@ class CartController extends Controller
     public function index()
     {
         $cart = Cart::where('user_id', Auth::user()->id)->with('products')->first();
-        return view('carts.index', compact('cart', $cart));
+        if ($cart) {
+            return view('carts.index', compact('cart', $cart));
+        } else {
+            return abort(404);
+        }
     }
 
     public function count()
@@ -26,62 +30,6 @@ class CartController extends Controller
         return response()->json([
             'cartCount' => $cartCount != null ? $cartCount : 0
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function add($id)
-    {
-        $product = Product::with('images')->find($id);
-        if (!$product) {
-            abort(404);
-        }
-
-        $cart = session()->get('cart');
-
-        if (!$cart) {
-            $cart =
-                [
-                    $id =>
-                        [
-                            "name" => $product->name,
-                            "quantity" => 1,
-                            "stock" => $product->stock,
-                            "sold" => $product->sold,
-                            "price" => $product->price,
-                            "image_url" => $product->images()->first()->image_src
-                        ]
-                ];
-
-            session()->put('cart', $cart);
-
-            return redirect('carts')->with('success', 'Product added to cart successfully!');
-        }
-
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-
-            session()->put('cart', $cart);
-
-            return redirect('carts')->with('success', 'Product added to cart successfully!');
-        }
-
-        $cart[$id] =
-            [
-                "name" => $product->name,
-                "quantity" => 1,
-                "stock" => $product->stock,
-                "price" => $product->price,
-                "sold" => $product->sold,
-                "image_url" => $product->images()->first()->image_src
-            ];
-
-        session()->put('cart', $cart);
-
-        return redirect('carts')->with('success', 'Product added to cart successfully');
     }
 
     /**
@@ -110,28 +58,6 @@ class CartController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -140,15 +66,12 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        if ($request->id and $request->quantity) {
-            $cart = session()->get('cart');
-
-            $cart[$request->id]["quantity"] = $request->quantity;
-
-            session()->put('cart', $cart);
-
-            session()->flash('success', 'Cart updated successfully');
-        }
+        $cart = Cart::findOrFail($request->get('id'));
+        $cart->quantity = $request->get('quantity');
+        $cart->update();
+        return response()->json([
+            'success' => 'Cart successfully updated!'
+        ]);
     }
 
     /**
@@ -157,17 +80,12 @@ class CartController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function remove(Request $request)
+    public function destroy($id)
     {
-        if ($request->id) {
-            $cart = session()->get('cart');
-
-            if (isset($cart[$request->id])) {
-                unset($cart[$request->id]);
-                session()->put('cart', $cart);
-            }
-
-            session()->flash('success', 'Product removed succesfully');
-        }
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+        return response()->json([
+            'success' => 'Cart successfully deleted!'
+        ]);
     }
 }
