@@ -90,10 +90,3 @@ Route::get('show/{id}', 'PublicController@show');
 Route::get('public/image/{imageName}', 'PublicController@image');
 
 Route::post('review', 'PublicController@store')->name('review.store');
-
-Route::get('/clear-cache', function () {
-    $exitCode = Artisan::call('config:clear');
-    $exitCode = Artisan::call('cache:clear');
-    $exitCode = Artisan::call('config:cache');
-    return 'Done';
-});
