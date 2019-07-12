@@ -17,8 +17,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/images/{filename}');
-
 # ProductController
 Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 
