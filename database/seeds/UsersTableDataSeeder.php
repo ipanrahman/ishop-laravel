@@ -12,12 +12,13 @@ class UsersTableDataSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
+        if (DB::table('users')->get()->count() == 0) {
 
-        User::create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('password'),
-        ]);
+            User::create([
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('password'),
+            ]);
+        }
     }
 }
