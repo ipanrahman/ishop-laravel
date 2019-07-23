@@ -18,7 +18,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 # ProductController
-Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+Route::group(['prefix' => 'products'], function () {
+    Route::get('/', ['as' => 'products.search', 'uses' => 'ProductController@search']);
+    Route::get('/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+});
 
 # CartController
 Route::get('/carts', ['as' => 'carts.index', 'uses' => 'CartController@index']);

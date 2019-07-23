@@ -38,15 +38,15 @@
                     </div>
                 </div>
                 <div class="col-lg-11-24 col-sm-8">
-                    <form action="#" class="py-1">
+                    <form action="{{ route('products.search') }}" class="py-1" method="get">
                         <div class="input-group w-100">
-                            <select class="custom-select" name="category_name">
+                            <select class="custom-select" name="q_name">
                                 <option value="">All type</option>
                                 <option value="">Special</option>
                                 <option value="">Only best</option>
                                 <option value="">Latest</option>
                             </select>
-                            <input type="text" class="form-control" style="width:50%;" placeholder="Search">
+                            <input type="text" class="form-control" style="width:50%;" placeholder="Search" name="q">
                             <div class="input-group-append">
                                 <button class="btn btn-warning" type="submit">
                                     <i class="fa fa-search"></i> Search
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="widget-header">
-                                <a href="#" data-offset="20,10">
+                                <a href="{{ route('login') }}" data-offset="20,10">
                                     <div class="icontext">
                                         <div class="icon-wrap"><i class="text-warning icon-sm fa fa-user"></i></div>
                                         <div class="text-wrap text-dark">
